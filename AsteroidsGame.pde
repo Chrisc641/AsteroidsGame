@@ -1,5 +1,10 @@
 Spaceship orville;
 Stars [] starfield = new Stars[300];
+boolean accelerating = false;
+boolean decelerating = false;
+boolean turningLeft = false;
+boolean turningRight = false;
+boolean hyperspace = false;
 
 public void setup() 
 {
@@ -18,15 +23,33 @@ public void draw()
   for(int i = 0; i < starfield.length; i++)
   {
  	starfield[i].show();
-  } 
+  }
+  if(accelerating == true) {orville.accelerate(0.05);}
+  if(decelerating == true) {orville.accelerate(-0.025);} 
+  if(turningLeft == true) {orville.turn(-3);} 
+  if(turningRight == true) {orville.turn(3);}
+  if(hyperspace == true)
+  {
+  	hyperspace = false;
+  	orville.hyperspace();
+  }  
   orville.move();
   orville.show();
 }
 
 public void keyPressed()
 {
-	if(key == 'w') {orville.accelerate(0.05);}
-	if(key == 's') {orville.accelerate(-0.025);}
-	if(key == 'a') {orville.turn(-3);}
-	if(key == 'd') {orville.turn(3);}
+  if(key == 'w') {accelerating = true;}
+  if(key == 's') {decelerating = true;}
+  if(key == 'a') {turningLeft = true;}
+  if(key == 'd') {turningRight = true;}
+  if(keyCode == ENTER) {hyperspace = true;}
+}
+
+public void keyReleased()
+{
+  if(key == 'w') {accelerating = false;}
+  if(key == 's') {decelerating = false;}
+  if(key == 'a') {turningLeft = false;}
+  if(key == 'd') {turningRight = false;}
 }
