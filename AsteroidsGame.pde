@@ -1,4 +1,5 @@
 Spaceship orville;
+ArrayList <Asteroid> asteroidBelt = new ArrayList<Asteroid>();
 Stars [] starfield = new Stars[300];
 boolean accelerating = false;
 boolean decelerating = false;
@@ -14,6 +15,10 @@ public void setup()
   for(int i = 0; i < starfield.length; i++)
   {
  	starfield[i] = new Stars();
+  }
+  for(int i = 0; i < 25; i++)
+  {
+  	asteroidBelt.add(new Asteroid());
   } 
 }
 
@@ -35,6 +40,11 @@ public void draw()
   }  
   orville.move();
   orville.show();
+  for(int i = 0; i < asteroidBelt.size(); i++)
+  {
+  	asteroidBelt.get(i).move();
+  	asteroidBelt.get(i).show();
+  }
 }
 
 public void keyPressed()
