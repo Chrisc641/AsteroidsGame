@@ -6,6 +6,7 @@ boolean decelerating = false;
 boolean turningLeft = false;
 boolean turningRight = false;
 boolean hyperspace = false;
+float health = 100;
 
 public void setup() 
 {
@@ -44,7 +45,15 @@ public void draw()
   {
   	asteroidBelt.get(i).move();
   	asteroidBelt.get(i).show();
+  	if(dist((float)orville.getX(), (float)orville.getY(), (float)asteroidBelt.get(i).getX(), (float)asteroidBelt.get(i).getY()) < 30)
+  	{
+  		health = health - 0.25;
+  	}
   }
+
+  fill(255);
+  textSize(30);
+  text("Health: " + health + "%", 0, 790);
 }
 
 public void keyPressed()
